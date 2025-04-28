@@ -6,6 +6,9 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
+import enTiddies.Player;
+import enTiddies.Ball;
+
 public class GamePanel extends JPanel implements Runnable{
 	
 	//Statics for the game window size and FPS
@@ -17,10 +20,19 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int screenWidth = tileSize * maxScreenCol;
 	public final int screenHeight = tileSize * maxScreenRow;
 	int FPS = 60;
+
+	public final int floorY = 0;
+	public final int leftWall = 0;
+	public final int rightWall = 2000;
 	
 	//creates the player and key listner
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread;
+	Player player1 = new Player(this, keyH, "left", 400, 450);
+	Player player2 = new Player(this, keyH, "left", 700, 450);
+	Player player3 = new Player(this, keyH, "right", 1000, 450);
+	Player player4 = new Player(this, keyH, "right", 1300, 450);
+	Ball ball = new Ball(this, 850, 300);
  
 	
 	//window constructor based off our variables
@@ -34,7 +46,6 @@ public class GamePanel extends JPanel implements Runnable{
 
 	//this starts the game loop
 	public void startGameThread() {
-	
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
@@ -74,13 +85,22 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 	}
 	public void update() {
-
+		player1.update();
+		player2.update();
+		player3.update();
+		player4.update();
+		ball.update();
 	}
 	
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g); // clears the screen
 		Graphics2D g2 = (Graphics2D)g; // casts to Graphics2D
+		player1.draw(g2);
+		player2.draw(g2);
+		player3.draw(g2);
+		player4.draw(g2);
+		ball.draw(g2);
 		g2.dispose(); // clears the graphics2D resources
 		// see the player class for more
 	}
