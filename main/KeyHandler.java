@@ -36,14 +36,14 @@ public class KeyHandler implements KeyListener{
 	public void keyReleased(KeyEvent e) {
 		int code = e.getKeyCode();
 		if(code == KeyEvent.VK_W) {
-			upPressed = false;
+			wPressed = false;
 			
 		}
 
 		
 
 		if(code == KeyEvent.VK_UP) {
-			wPressed = false;
+			upPressed = false;
 			
 		}
 	}
