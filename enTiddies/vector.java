@@ -2,34 +2,32 @@ package enTiddies;
 
 public class vector {
     public double angle;
-    public double xVelocity, yVelocity;
-    public double xAcceleration, yAcceleration;
-    public vector(double angle, double xVelocity, double yVelocity, double xAcceleration, double yAcceleration) {
-        this.angle = angle;
-        this.xVelocity = xVelocity;
-        this.yVelocity = yVelocity;
-        this.xAcceleration = xAcceleration;
-        this.yAcceleration = yAcceleration;
+    public double velocity;
+    public vector(double angle, double velocity) {
+        this.angle = angle%2*Math.PI;
+        this.velocity = velocity;
     }
     public double getAngle() {
         return angle;
     }
-    public double getxVelocity() {
-        return xVelocity;
+    public double getVelocity() {
+        return velocity;
     }
-    public double getyVelocity() {
-        return yVelocity;
+    public double getXVelocity() {
+        return Math.cos(angle)*velocity;
     }
-    public double getxAcceleration() {
-        return xAcceleration;
+    public double getYVelocity() {
+        return Math.sin(angle)*velocity;
     }
-    public double getyAcceleration() {
-        return yAcceleration;
+    public void setVelocity(double velocity) {
+        this.velocity = velocity;
+    } public void setAngle(double angle) {
+        this.angle = angle;
     }
-    public double overallVelocity() {
-        return Math.sqrt(Math.pow(xVelocity, 2.0)+Math.pow(yAcceleration, 2.0));
-    }
-    public void accelerate() {
-        
+    public void addVector(vector v) {
+        double newXVel = this.getXVelocity() + v.getXVelocity();
+        double newYVel = this.getYVelocity() + v.getYVelocity();
+        this.setVelocity(Math.sqrt(Math.pow(newXVel, 2) + Math.pow(newYVel, 2)));
+        this.setAngle(Math.atan2(newYVel, newXVel));
     }
 }
