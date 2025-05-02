@@ -4,7 +4,7 @@ public class vector {
     public double angle;
     public double velocity;
     public vector(double angle, double velocity) {
-        this.angle = angle%2*Math.PI;
+        this.angle = angle;
         this.velocity = velocity;
     }
     public double getAngle() {

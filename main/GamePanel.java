@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 import enTiddies.Player;
 import enTiddies.Ball;
+import enTiddies.arm;
 
 public class GamePanel extends JPanel implements Runnable{
 	
@@ -32,6 +33,10 @@ public class GamePanel extends JPanel implements Runnable{
 	Player player2 = new Player(this, keyH, "left", 700, 450);
 	Player player3 = new Player(this, keyH, "right", 1000, 450);
 	Player player4 = new Player(this, keyH, "right", 1300, 450);
+	arm arm1 = new arm(this, keyH, player1);
+	arm arm2 = new arm(this, keyH, player2);
+	arm arm3 = new arm(this, keyH, player3);
+	arm arm4 = new arm(this, keyH, player4);
 	Ball ball = new Ball(this, 850, 300);
  
 	
@@ -89,6 +94,10 @@ public class GamePanel extends JPanel implements Runnable{
 		player2.update();
 		player3.update();
 		player4.update();
+		arm1.update();
+		arm2.update();
+		arm3.update();
+		arm4.update();
 		ball.update();
 	}
 	
@@ -100,6 +109,10 @@ public class GamePanel extends JPanel implements Runnable{
 		player2.draw(g2);
 		player3.draw(g2);
 		player4.draw(g2);
+		arm1.draw(g2);
+		arm2.draw(g2);
+		arm3.draw(g2);
+		arm4.draw(g2);
 		ball.draw(g2);
 		g2.dispose(); // clears the graphics2D resources
 		// see the player class for more

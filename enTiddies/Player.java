@@ -7,16 +7,22 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.KeyHandler;
+import enTiddies.vector;
+import java.awt.geom.AffineTransform;
 
 
 public class Player extends entity{
 	
 	GamePanel gp;
 	KeyHandler keyH;
-	private String direction;
-	private int startX;
-	private int startY;
-    private double velocity = 0;
+	public String direction;
+	public int startX;
+	public int startY;
+	private double angle;
+	vector Vector = new vector(3*Math.PI/2, 0);
+	vector jump = new vector(3*Math.PI/2, 2);
+	vector gravity = new vector(Math.PI/2, 1);
+
 
 		
 		public Player(GamePanel gp, KeyHandler keyH, String direction, int startX, int startY) {
@@ -25,45 +31,51 @@ public class Player extends entity{
 			this.direction = direction;
 			x = startX;
 			y = startY;
+			angle = 5;
 			getPlayerImage();
 	}
 
 	public void getPlayerImage() {
 		try {
-			sprite = ImageIO.read(new File("enTiddies/img/" + direction +"Head.png"));
+			sprite = ImageIO.read(new File("enTiddies/img/"+ direction +"Reese.png"));
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
 	public void update() {
-		if (direction == "left"){
-			if(keyH.wPressed){
-				y-- ;
-			}else if(y<450){
-				y++;
-			}
-		}else{
-			if(keyH.upPressed){
-				y-- ;
-			}else if(y<450){
-				y++;
-			}
+		//Vector.setAngle(Vector.getAngle()+0.01);
+	
+		if(direction == "left" ? keyH.wPressed : keyH.upPressed){
+			Vector.addVector(jump);
 		}
-		if(!keyH.wPressed && !keyH.upPressed)
-		if (y >= 450) {
-            y = 450;
-			if(Math.abs(velocity) <= 6){
-				velocity = 0;
-			}else{
-				velocity = -velocity * 0.8;
+		if(y<450){
+			Vector.addVector(gravity);
+			gravity.setVelocity(gravity.getVelocity()+0.05);
+		}else if(y>450){
+			gravity.setVelocity(1);
+			y = 450;
+			if(Vector.getYVelocity() > 0){
+				Vector.setVelocity(-0.3*Vector.getVelocity());
+				if(Math.abs(Vector.getVelocity()) <= 2){
+					Vector.setVelocity(0);
+				}
 			}
-		}else{
-			velocity += 0.5;
+			
 		}
-		y += velocity;
+		if(Math.abs(Vector.getVelocity()) >= 20){
+			Vector.setVelocity(Math.signum(Vector.getVelocity())*20);
+		}
+		
+		x += Vector.getXVelocity();
+		y += Vector.getYVelocity();
+		System.out.println(Vector.getYVelocity() + " " + y);
+		
 	}
 	public void draw(Graphics2D g2) {
 		BufferedImage image = sprite;
-		g2.drawImage(image, x, y, 200, 200, null);
+        AffineTransform originalTransform = g2.getTransform();
+		//g2.rotate(Vector.getAngle(), x, y+300);
+		g2.drawImage(image, x, y, 100, 300, null);
+		g2.setTransform(originalTransform);
 	}
 }

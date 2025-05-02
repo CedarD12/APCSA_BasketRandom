@@ -45,7 +45,6 @@ public class Ball extends entity{
 		}
 		y += velocity;
 
-		System.out.println(velocity + "   " + y);
 	}
 	public void draw(Graphics2D g2) {
 		BufferedImage image = sprite;
