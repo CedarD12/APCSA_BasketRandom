@@ -29,5 +29,6 @@ public class vector {
         double newYVel = this.getYVelocity() + v.getYVelocity();
         this.setVelocity(Math.sqrt(Math.pow(newXVel, 2) + Math.pow(newYVel, 2)));
         this.setAngle(Math.atan2(newYVel, newXVel));
+        //System.out.println(this.getAngle());
     }
 }

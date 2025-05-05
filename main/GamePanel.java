@@ -29,10 +29,10 @@ public class GamePanel extends JPanel implements Runnable{
 	//creates the player and key listner
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread;
-	Player player1 = new Player(this, keyH, "left", 400, 450);
-	Player player2 = new Player(this, keyH, "left", 700, 450);
-	Player player3 = new Player(this, keyH, "right", 1000, 450);
-	Player player4 = new Player(this, keyH, "right", 1300, 450);
+	Player player1 = new Player(this, keyH, "left", 400, 450, 1);
+	Player player2 = new Player(this, keyH, "left", 700, 450, 2);
+	Player player3 = new Player(this, keyH, "right", 1000, 450, 3);
+	Player player4 = new Player(this, keyH, "right", 1300, 450, 4);
 	arm arm1 = new arm(this, keyH, player1);
 	arm arm2 = new arm(this, keyH, player2);
 	arm arm3 = new arm(this, keyH, player3);
