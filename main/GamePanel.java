@@ -100,7 +100,7 @@ public class GamePanel extends JPanel implements Runnable{
 		arm2.update();
 		arm3.update();
 		arm4.update();
-		ball.update();
+		ball.update(new Player[]{player1, player2, player3, player4}, new arm[]{arm1, arm2, arm3, arm4});
 		background.update();
 	}
 	

@@ -16,24 +16,26 @@ public class Background {
     private int frameCounter;
     private final int resetTimeSec = 10;
     private KeyHandler keyH;
-    private boolean background;
+    private boolean background = true;
     private int index;
 
     public Background(GamePanel gp, KeyHandler keyH) {
+        back = new ArrayList<>();
+        ground = new ArrayList<>();
         try {
-            back.add(ImageIO.read(new File("enTiddies/img/backgrounds/ballroom_1")));
-            back.add(ImageIO.read(new File("enTiddies/img/backgrounds/ballroom_2")));
-            back.add(ImageIO.read(new File("enTiddies/img/backgrounds/ballroom_3")));
-            back.add(ImageIO.read(new File("enTiddies/img/backgrounds/ballroom_4")));
-            back.add(ImageIO.read(new File("enTiddies/img/backgrounds/ballroom_5")));
-            back.add(ImageIO.read(new File("enTiddies/img/backgrounds/ballroom_6")));
+            back.add(ImageIO.read(new File("enTiddies/img/backgrounds/ballrooms_1.jpg")));
+            back.add(ImageIO.read(new File("enTiddies/img/backgrounds/ballrooms_2.jpg")));
+            back.add(ImageIO.read(new File("enTiddies/img/backgrounds/ballrooms_3.jpg")));
+            back.add(ImageIO.read(new File("enTiddies/img/backgrounds/ballrooms_4.jpg")));
+            back.add(ImageIO.read(new File("enTiddies/img/backgrounds/ballrooms_5.jpg")));
+            back.add(ImageIO.read(new File("enTiddies/img/backgrounds/ballrooms_6.jpg")));
 
-            ground.add(ImageIO.read(new File("enTiddies/img/backgrounds/dirt_1")));
-            ground.add(ImageIO.read(new File("enTiddies/img/backgrounds/dirt_2")));
-            ground.add(ImageIO.read(new File("enTiddies/img/backgrounds/dirt_3")));
-            ground.add(ImageIO.read(new File("enTiddies/img/backgrounds/dirt_4")));
-            ground.add(ImageIO.read(new File("enTiddies/img/backgrounds/dirt_5")));
-            ground.add(ImageIO.read(new File("enTiddies/img/backgrounds/dirt_6")));
+            ground.add(ImageIO.read(new File("enTiddies/img/backgrounds/dirt_1.jpg")));
+            ground.add(ImageIO.read(new File("enTiddies/img/backgrounds/dirt_2.jpg")));
+            ground.add(ImageIO.read(new File("enTiddies/img/backgrounds/dirt_3.jpg")));
+            ground.add(ImageIO.read(new File("enTiddies/img/backgrounds/dirt_4.jpg")));
+            ground.add(ImageIO.read(new File("enTiddies/img/backgrounds/dirt_5.jpg")));
+            ground.add(ImageIO.read(new File("enTiddies/img/backgrounds/dirt_6.jpg")));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

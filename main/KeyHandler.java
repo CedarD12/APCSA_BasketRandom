@@ -59,7 +59,7 @@ public class KeyHandler implements KeyListener{
 		}
 
 		if(code == KeyEvent.VK_P) {
-
+			pPressed = true;
 		}
 		
 	}
@@ -106,6 +106,10 @@ public class KeyHandler implements KeyListener{
 		if(code == KeyEvent.VK_S) {
 			sPressed = false;
 			
+		}
+
+		if(code == KeyEvent.VK_P) {
+			pPressed = false;
 		}
 	}
 	

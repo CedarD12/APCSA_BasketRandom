@@ -58,14 +58,14 @@ public class Player extends entity{
 			bPressed = false;
 		}
 
-		System.out.println(x);
+		//System.out.println(x);
 		//Vector.setAngle(Vector.getAngle()+0.01);
 		Vector.addVector(new vector(Vector.getXVelocity() > 0 ? Math.PI : 0, Vector.getXVelocity() > 0 ? 0.1*Vector.getXVelocity() : -0.1*Vector.getXVelocity()));
 		if((direction == "left" ? keyH.aPressed : keyH.leftPressed) && name%2 == playerNum){
-			Vector.addVector(left);
+			Vector.addVector(y<450 ? new vector(Math.PI, 1): left);
 		}
 		if((direction == "left" ? keyH.dPressed : keyH.rightPressed) && name%2 == playerNum){
-			Vector.addVector(right);
+			Vector.addVector(y<450 ? new vector(0, 1): right);
 		}
 
 
@@ -74,7 +74,7 @@ public class Player extends entity{
 		}
 
 		
-		if(direction == "left" ? keyH.wPressed : keyH.upPressed  && (Vector.getYVelocity() < 0 || y>=450)  && name%2 == playerNum){
+		if((direction == "left" ? keyH.wPressed : keyH.upPressed)  && (Vector.getYVelocity() < 0 || y>=450)  && name%2 == playerNum){
 			Vector.addVector(jump);
 		}
 
