@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 import enTiddies.Player;
+import enTiddies.Background;
 import enTiddies.Ball;
 import enTiddies.arm;
 
@@ -27,8 +28,9 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int rightWall = 2000;
 	
 	//creates the player and key listner
-	KeyHandler keyH = new KeyHandler();
+	public KeyHandler keyH = new KeyHandler();
 	Thread gameThread;
+	Background background = new Background(this, keyH);
 	Player player1 = new Player(this, keyH, "left", 400, 450, 1);
 	Player player2 = new Player(this, keyH, "left", 700, 450, 2);
 	Player player3 = new Player(this, keyH, "right", 1000, 450, 3);
@@ -99,12 +101,14 @@ public class GamePanel extends JPanel implements Runnable{
 		arm3.update();
 		arm4.update();
 		ball.update();
+		background.update();
 	}
 	
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g); // clears the screen
 		Graphics2D g2 = (Graphics2D)g; // casts to Graphics2D
+		background.draw(g2);
 		player1.draw(g2);
 		player2.draw(g2);
 		player3.draw(g2);
