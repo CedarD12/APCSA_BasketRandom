@@ -22,6 +22,8 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int screenWidth = tileSize * maxScreenCol;
 	public final int screenHeight = tileSize * maxScreenRow;
 	int FPS = 60;
+	public int frameCounter = 0;
+	public final int resetTImeSec = 10;
 
 	public final int floorY = 0;
 	public final int leftWall = 0;
@@ -92,6 +94,7 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 	}
 	public void update() {
+		frameCounter++;
 		player1.update();
 		player2.update();
 		player3.update();
@@ -101,7 +104,14 @@ public class GamePanel extends JPanel implements Runnable{
 		arm3.update();
 		arm4.update();
 		ball.update(new Player[]{player1, player2, player3, player4}, new arm[]{arm1, arm2, arm3, arm4});
-		background.update();
+		if (frameCounter >= 60 * resetTImeSec) {
+			background.update();
+		}
+		if (keyH.pPressed) {
+			background.backgroundBol = !background.backgroundBol;
+			background.backgroundType();
+			background.update();
+		}
 	}
 	
 	

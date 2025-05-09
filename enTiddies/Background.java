@@ -13,10 +13,8 @@ public class Background {
     private ArrayList<BufferedImage> ground;
     private GamePanel gp;
     private BufferedImage sprite;
-    private int frameCounter;
-    private final int resetTimeSec = 10;
     private KeyHandler keyH;
-    private boolean background = true;
+    public boolean backgroundBol = true;
     private int index;
 
     public Background(GamePanel gp, KeyHandler keyH) {
@@ -45,20 +43,21 @@ public class Background {
     }
 
     public void update() {
-        if (frameCounter >= resetTimeSec * 60) {
-            frameCounter = 0;
-            changeImage();
-        } else frameCounter++;
+        changeImage();
+    }
 
-        if (keyH.pPressed) {
-            frameCounter = 0;
-            background = !background;
-        }
+    public ArrayList<BufferedImage> backgroundType() {
+        gp.frameCounter = 0;
+        return backgroundBol ? back : ground;
     }
 
     public void changeImage() {
-        index = index >= 5 ?  0 : index++;
-        sprite = background ? back.get(index) : ground.get(index);
+        index++;
+        if (index >= 6) {
+            index = 0;
+        }
+        System.out.println(index);
+        sprite = backgroundType().get(index);
     }
 
     public void draw(Graphics2D g2) {
