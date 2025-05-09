@@ -1,4 +1,4 @@
-    package main;
+package main;
 
 import javax.swing.JFrame;
 
@@ -11,7 +11,7 @@ public class Main {
         GamePanel gamePanel = new GamePanel();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.setTitle("Basket Random");
+        window.setTitle("Dance Party");
 
         window.add(gamePanel);
         window.pack();
