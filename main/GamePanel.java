@@ -10,6 +10,7 @@ import enTiddies.Player;
 import enTiddies.Background;
 import enTiddies.Ball;
 import enTiddies.arm;
+import enTiddies.Net;
 
 public class GamePanel extends JPanel implements Runnable{
 	
@@ -39,6 +40,7 @@ public class GamePanel extends JPanel implements Runnable{
 	arm arm2 = new arm(this, keyH, player2);
 	arm arm3 = new arm(this, keyH, player3);
 	arm arm4 = new arm(this, keyH, player4);
+	Net net = new Net();
 	Ball ball = new Ball(this, 850, 300);
  
 	
@@ -100,7 +102,7 @@ public class GamePanel extends JPanel implements Runnable{
 		arm2.update();
 		arm3.update();
 		arm4.update();
-		ball.update(new Player[]{player1, player2, player3, player4}, new arm[]{arm1, arm2, arm3, arm4});
+		ball.update(new Player[]{player1, player2, player3, player4}, new arm[]{arm1, arm2, arm3, arm4}, net);
 		background.update();
 	}
 	
@@ -117,6 +119,7 @@ public class GamePanel extends JPanel implements Runnable{
 		arm2.draw(g2);
 		arm3.draw(g2);
 		arm4.draw(g2);
+		net.draw(g2);
 		ball.draw(g2);
 		g2.dispose(); // clears the graphics2D resources
 		// see the player class for more

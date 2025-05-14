@@ -38,7 +38,7 @@ public class Ball extends entity {
         }
     }
 
-    public void update(Player[] players, arm[] arms) {
+    public void update(Player[] players, arm[] arms, Net net) {
 
         if (y + HEIGHT >= 650) {
             y = 650 - HEIGHT;
@@ -73,6 +73,19 @@ public class Ball extends entity {
                 break;
             }
         }
+
+        Rectangle netRect = new Rectangle(net.x, net.y, net.width, net.height);
+            if (ballRect.intersects(netRect)) {
+                if (x + WIDTH / 2 < net.x + 50) {
+                    dx = -Math.abs(dx) - 2;
+                } else {
+                    dx = Math.abs(dx) + 2;
+                }
+                velocity = -Math.abs(velocity) * 0.8;
+            }
+
+
+
      Shape ballRect2 = new Rectangle2D.Double(x, y, WIDTH, HEIGHT);
 //oh my days
 for (arm arm : arms) {
