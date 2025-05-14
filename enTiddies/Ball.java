@@ -91,13 +91,14 @@ for (arm arm : arms) {
 
     if (rotatedArmRect.intersects(ballRect2.getBounds2D())) {
         if (y + HEIGHT / 2 < arm.y + 50) {
-            velocity = -Math.abs(velocity) - 20;
+            velocity = -Math.abs(velocity) - 5;
         } else {
-            velocity = Math.abs(velocity) + 20;
+            velocity = Math.abs(velocity) + 5;
         }
         dx = -Math.abs(dx) * 0.8;
         break;
     }
+    if(Math.abs(velocity) > 16.5)velocity = Math.signum(velocity)*16.5;
 }
 		y += velocity;
         x += dx;
