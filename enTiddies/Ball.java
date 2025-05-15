@@ -111,7 +111,8 @@ for (arm arm : arms) {
         dx = -Math.abs(dx) * 0.8;
         break;
     }
-    if(Math.abs(velocity) > 16.5)velocity = Math.signum(velocity)*16.5;
+    //if(Math.abs(velocity) > 16.5)velocity = Math.signum(velocity)*16.5;
+    if(velocity < -16.5)velocity = -16.5;
 }
 		y += velocity;
         x += dx;
