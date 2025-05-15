@@ -114,6 +114,10 @@ for (arm arm : arms) {
     //if(Math.abs(velocity) > 16.5)velocity = Math.signum(velocity)*16.5;
     if(velocity < -16.5)velocity = -16.5;
 }
+        if (y + HEIGHT >= 650 && velocity == 0){
+            x = (int)Math.random()*30 + 875;
+            y = 300;
+        }
 		y += velocity;
         x += dx;
     }
