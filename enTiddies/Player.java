@@ -69,7 +69,7 @@ public class Player extends entity{
 		}
 
 
-		if(x <= 0 || x >= 1830){
+		if(x <= 0 || x >= 1830 || (direction == "left" ? x >= 800 : x <= 900)){
 			Vector.addVector(new vector(Vector.getXVelocity() > 0 ? Math.PI : 0, Vector.getXVelocity() > 0 ? 2.7*Vector.getXVelocity() : -2.7*Vector.getXVelocity()));
 		}
 
